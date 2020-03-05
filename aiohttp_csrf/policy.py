@@ -1,4 +1,5 @@
 import abc
+from secrets import compare_digest
 
 
 class AbstractPolicy(metaclass=abc.ABCMeta):
@@ -17,7 +18,7 @@ class FormPolicy(AbstractPolicy):
 
         token = post.get(self.field_name)
 
-        return token == original_value
+        return compare_digest(token, original_value)
 
 
 class HeaderPolicy(AbstractPolicy):
@@ -28,7 +29,7 @@ class HeaderPolicy(AbstractPolicy):
     async def check(self, request, original_value):
         token = request.headers.get(self.header_name)
 
-        return token == original_value
+        return compare_digest(token, original_value)
 
 
 class FormAndHeaderPolicy(HeaderPolicy, FormPolicy):
