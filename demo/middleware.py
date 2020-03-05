@@ -16,7 +16,7 @@ def make_app():
 
     app.middlewares.append(aiohttp_csrf.csrf_middleware)
 
-    async def handler_get_form_with_token(request):
+    async def handler_get_form_with_post_token(request):
         token = await aiohttp_csrf.generate_token(request)
 
         body = '''
@@ -25,6 +25,28 @@ def make_app():
                 <body>
                     <form method="POST" action="/post_with_check">
                         <input type="hidden" name="{field_name}" value="{token}" />
+                        <input type="text" name="name" />
+                        <input type="submit" value="Say hello">
+                    </form>
+                </body>
+            </html>
+        '''  # noqa
+
+        body = body.format(field_name=FORM_FIELD_NAME, token=token)
+
+        return web.Response(
+            body=body.encode('utf-8'),
+            content_type='text/html',
+        )
+
+    async def handler_get_form_with_get_token(request):
+        token = await aiohttp_csrf.generate_token(request)
+
+        body = '''
+            <html>
+                <head><title>Form with csrf protection</title></head>
+                <body>
+                    <form method="POST" action="/post_with_check/{token}">
                         <input type="text" name="name" />
                         <input type="submit" value="Say hello">
                     </form>
@@ -80,15 +102,19 @@ def make_app():
 
     app.router.add_route(
         'GET',
-        '/form_with_check',
-        handler_get_form_with_token,
+        '/form_with_post_check',
+        handler_get_form_with_post_token,
+    )
+    app.router.add_route(
+        'GET',
+        '/form_with_get_check',
+        handler_get_form_with_get_token,
     )
     app.router.add_route(
         'POST',
-        '/post_with_check',
+        '/post_with_check/{'+FORM_FIELD_NAME+'}',
         handler_post_check,
     )
-
     app.router.add_route(
         'GET',
         '/form_without_check',
