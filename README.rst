@@ -204,9 +204,10 @@ Invalid token behavior
 
 By default, if token is invalid, ``aiohttp_csrf`` will raise ``aiohttp.web.HTTPForbidden`` exception.
 
-You have abbility to specify your custom error handler. It can be:
+You have ability to specify your custom error handler. It can be:
 
-- **callable instance**. Input parameter - aiohttp request.
+- **callable instance. Input parameter - aiohttp request.**
+
 .. code-block:: python
 
     def custom_error_handler(request):
