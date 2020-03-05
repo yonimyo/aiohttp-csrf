@@ -9,7 +9,7 @@ from .policy import AbstractPolicy
 from .storage import AbstractStorage
 
 
-__version__ = '0.0.1'
+__version__ = '0.0.2'
 
 APP_POLICY_KEY = 'aiohttp_csrf_policy'
 APP_STORAGE_KEY = 'aiohttp_csrf_storage'
