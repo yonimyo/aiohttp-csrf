@@ -9,7 +9,7 @@ async def hello(request):
 def dec(handler):
     def wrapped(*args, **kwargs):
         request = args[-1]
-        import ipdb;ipdb.set_trace()
+        #import ipdb;ipdb.set_trace()
         return handler(*args, **kwargs)
 
     return wrapped
