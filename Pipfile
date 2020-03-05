@@ -5,16 +5,16 @@ verify_ssl = true
 
 [dev-packages]
 aiohttp-csrf = {editable = true,path = "."}
-
-[packages]
-aiohttp = "==3.6.2"
-aiohttp-session = "==2.9.0"
-flake8 = "==3.7.9"
-isort = "==4.3.21"
 pytest = "==5.3.5"
 pytest-aiohttp = "==0.3.0"
 pytest-cov = "==2.8.1"
 tox = "==3.14.5"
+flake8 = "==3.7.9"
+isort = "==4.3.21"
+
+[packages]
+aiohttp = "==3.6.2"
+aiohttp-session = "==2.9.0"
 
 [requires]
 python_version = "3.8"
