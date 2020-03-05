@@ -8,7 +8,7 @@ from aiohttp import web
 from aiohttp_session import setup as setup_session
 from aiohttp_session import SimpleCookieStorage
 
-from .conftest import FORM_FIELD_NAME
+from conftest import FORM_FIELD_NAME
 
 FORM_FIELD_REGEX = re.compile(
     r'<input.*name="' + FORM_FIELD_NAME + '".*value="(?P<token>[^"]+)".*>',
