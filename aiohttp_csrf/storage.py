@@ -28,9 +28,11 @@ class AbstractStorage(metaclass=abc.ABCMeta):
 
 class BaseStorage(AbstractStorage, metaclass=abc.ABCMeta):
 
-    def __init__(self, token_generator=None):
+    def __init__(self, token_generator=None, secret_phrase=None):
         if token_generator is None:
-            token_generator = HashedTokenGenerator()
+            if secret_phrase is None:
+                raise TypeError('secret_phrase is required for default token type (Hash)')
+            token_generator = HashedTokenGenerator(secret_phrase)
         elif not isinstance(token_generator, AbstractTokenGenerator):
             raise TypeError(
                 'Token generator must be instance of AbstractTokenGenerator',
