@@ -1,7 +1,7 @@
 [tool]
 [tool.poetry]
 name = "aiohttp_csrf"
-version = "0.0.4"
+version = "0.1.0"
 description = "CSRF protection for aiohttp-server"
 authors = ["TensorTom"]
 license = "MIT"
