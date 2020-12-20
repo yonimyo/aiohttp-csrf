@@ -1,6 +1,6 @@
 import abc
 
-from .token_generator import AbstractTokenGenerator, SimpleTokenGenerator
+from .token_generator import AbstractTokenGenerator, HashedTokenGenerator
 
 try:
     from aiohttp_session import get_session
@@ -30,7 +30,7 @@ class BaseStorage(AbstractStorage, metaclass=abc.ABCMeta):
 
     def __init__(self, token_generator=None):
         if token_generator is None:
-            token_generator = SimpleTokenGenerator()
+            token_generator = HashedTokenGenerator()
         elif not isinstance(token_generator, AbstractTokenGenerator):
             raise TypeError(
                 'Token generator must be instance of AbstractTokenGenerator',
