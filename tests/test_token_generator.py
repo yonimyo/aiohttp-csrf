@@ -1,4 +1,4 @@
-import hashlib
+from blake3 import blake3
 import uuid
 from unittest import mock
 
@@ -29,7 +29,7 @@ def test_hashed_token_generator():
     u = uuid.uuid4()
     token_string = u.hex + 'secret'
 
-    hasher = hashlib.sha256(token_string.encode(encoding=encoding))
+    hasher = blake3(token_string.encode(encoding=encoding))
 
     with mock.patch('hashlib.sha256', return_value=hasher):
         token = token_generator.generate()
