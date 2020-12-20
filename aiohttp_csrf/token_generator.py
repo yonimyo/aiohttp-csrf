@@ -1,5 +1,5 @@
 import abc
-import hashlib
+from blake3 import blake3
 import uuid
 
 
@@ -25,6 +25,6 @@ class HashedTokenGenerator(AbstractTokenGenerator):
 
         token += self.secret_phrase
 
-        hasher = hashlib.sha256(token.encode(self.encoding))
+        hasher = blake3(token.encode(self.encoding))
 
         return hasher.hexdigest()

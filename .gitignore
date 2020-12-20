@@ -18,7 +18,6 @@ htmlcov
 
 # generic files to ignore
 *~
-*.lock
 *.DS_Store
 *.swp
 *.out
@@ -26,3 +25,5 @@ htmlcov
 .tox/
 deps/
 docs/_build/
+
+idea/

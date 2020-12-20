@@ -3,6 +3,17 @@ aiohttp_csrf
 
 The library provides csrf (xsrf) protection for `aiohttp.web`__.
 
+The library provides csrf (xsrf) protection for [aiohttp.web](https://docs.aiohttp.org/en/latest/web.html).
+
+**note:** The package [aiohttp-csrf-fixed](https://pypi.org/project/aiohttp-csrf-fixed) is aiohttp_csrf 0.0.2 +
+[this commit](https://github.com/oplik0/aiohttp-csrf/commit/b1bd9207f43a2abf30e32e72ecdb10983a251823). The maintainer
+didn't submit a PR so I just saw it by chance. I haven't had  time to closely examine it but I think it's just removing
+the HTTP security error that happens if no CSRF is provided. Why do that? An HTTP error is good because it tells the
+client what happened and lets you handle it by middleware.
+
+Since they bumped to 0.0.3, I'm skipping that version and
+going to 0.0.4 then merging their repo to a new branch.
+
 .. _aiohttp_web: https://docs.aiohttp.org/en/latest/web.html
 
 __ aiohttp_web_
