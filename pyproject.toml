@@ -10,7 +10,7 @@ readme = "README.md"
 [tool.poetry.dependencies]
 python = ">=3.8.3, <4"
 aiohttp = ">=3.6.2, <3.8"
-aiohttp-session = {extras = ["aioredis"], git = "https://github.com/TheDoctorAI/aiohttp-session", branch = "master"}
+aiohttp-session = "^2"
 blake3 = "^0.1.8"
 
 [tool.poetry.dev-dependencies]

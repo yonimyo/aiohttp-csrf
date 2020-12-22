@@ -8,10 +8,7 @@ package_data = \
 {'': ['*']}
 
 install_requires = \
-['aiohttp-session[aioredis] @ '
- 'git+https://github.com/TheDoctorAI/aiohttp-session@master',
- 'aiohttp>=3.6.2,<3.8',
- 'blake3>=0.1.8,<0.2.0']
+['aiohttp-session>=2,<3', 'aiohttp>=3.6.2,<3.8', 'blake3>=0.1.8,<0.2.0']
 
 setup_kwargs = {
     'name': 'aiohttp-csrf',
