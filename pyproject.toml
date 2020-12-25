@@ -1,7 +1,7 @@
 [tool]
 [tool.poetry]
 name = "aiohttp_csrf"
-version = "0.1.0"
+version = "0.1.1"
 description = "CSRF protection for aiohttp-server"
 authors = ["TensorTom"]
 license = "MIT"
@@ -9,7 +9,7 @@ readme = "README.md"
 
 [tool.poetry.dependencies]
 python = ">=3.8.3, <4"
-aiohttp = ">=3.6.2, <3.8"
+aiohttp = ">=3.6.2, <4.1"
 aiohttp-session = "^2"
 blake3 = "^0.1.8"
 
