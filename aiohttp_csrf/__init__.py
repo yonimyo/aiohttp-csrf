@@ -96,10 +96,10 @@ async def save_token(request, response):
     await storage.save_token(request, response)
 
 
-async def csrf_exempt(handler):
+def csrf_exempt(handler):
     @wraps(handler)
-    def wrapped_handler(*args, **kwargs):
-        return handler(*args, **kwargs)
+    async def wrapped_handler(*args, **kwargs):
+        return await handler(*args, **kwargs)
 
     setattr(wrapped_handler, MIDDLEWARE_SKIP_PROPERTY, True)
 
