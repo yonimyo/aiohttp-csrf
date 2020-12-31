@@ -21,7 +21,7 @@ The library allows you to implement csrf (xsrf) protection for requests
 
 Basic usage example:
 
-``` {.sourceCode .python}
+```python
 import aiohttp_csrf
 from aiohttp import web
 
@@ -96,7 +96,7 @@ web.run_app(make_app())
 
 First of all, you need to initialize `aiohttp_csrf` in your application:
 
-``` {.sourceCode .python}
+```python
 app = web.Application()
 
 csrf_policy = aiohttp_csrf.policy.FormPolicy(FORM_FIELD_NAME)
@@ -112,10 +112,10 @@ After initialize you can use `@aiohttp_csrf.csrf_protect` for handlers, that you
 initialize `aiohttp_csrf.csrf_middleware` and do not disturb about using
 decorator ([full middleware example here](demo/middleware.py)):
 
-``` {.sourceCode .python}
-...
+```python
+# ...
 app.middlewares.append(aiohttp_csrf.csrf_middleware)
-...
+# ...
 ```
 
 In this case all your handlers will be protected.
@@ -128,7 +128,7 @@ POST ([manual protection example](demo/manual_protection.py))
 If you want to use middleware, but need handlers without protection, you can use `@aiohttp_csrf.csrf_exempt`. Mark you
 handler with this decorator and this handler will not check the token:
 
-``` {.sourceCode .python}
+```python
 @aiohttp_csrf.csrf_exempt
 async def handler_post_not_check(request):
     ...
@@ -138,7 +138,7 @@ async def handler_post_not_check(request):
 
 For generate token you need to call `aiohttp_csrf.generate_token` in your handler:
 
-``` {.sourceCode .python}
+```python
 @aiohttp_csrf.csrf_protect
 async def handler_get(request):
     token = await aiohttp_csrf.generate_token(request)
@@ -192,7 +192,7 @@ You have ability to specify your custom error handler. It can be:
 
 - **callable instance. Input parameter - aiohttp request.**
 
-``` {.sourceCode .python}
+```python
 def custom_error_handler(request):
     # do something
     return aiohttp.web.Response(status=403)
@@ -208,14 +208,14 @@ It will be called instead of protected handler.
 
 - **sub class of Exception**. In this case this Exception will be raised.
 
-``` {.sourceCode .python}
+```python
 class CustomException(Exception):
     pass
 ```
 
 You can specify custom error handler globally, when initialize `aiohttp_csrf` in your application:
 
-``` {.sourceCode .python}
+```python
 ...
 class CustomException(Exception):
     pass
@@ -229,7 +229,7 @@ In this case custom error handler will be applied to all protected handlers.
 
 Or you can specify custom error handler locally, for specific handler:
 
-``` {.sourceCode .python}
+```python
 ...
 class CustomException(Exception):
     pass

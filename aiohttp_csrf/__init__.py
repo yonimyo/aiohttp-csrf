@@ -96,7 +96,7 @@ async def save_token(request, response):
     await storage.save_token(request, response)
 
 
-def csrf_exempt(handler):
+async def csrf_exempt(handler):
     @wraps(handler)
     def wrapped_handler(*args, **kwargs):
         return handler(*args, **kwargs)
