@@ -6,6 +6,7 @@ description = "CSRF protection for aiohttp-server"
 authors = ["TensorTom"]
 license = "MIT"
 readme = "README.md"
+homepage = "https://github.com/TensorTom/aiohttp-csrf"
 
 [tool.poetry.dependencies]
 python = ">=3.8.3, <4"
