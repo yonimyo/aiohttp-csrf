@@ -15,7 +15,7 @@ class FormPolicy(AbstractPolicy):
 
     async def check(self, request, original_value):
         get = request.match_info.get(self.field_name, None)
-        post_req = await request.post() if get is None else None
+        post_req = await request.json() if get is None else None
         post = post_req.get(self.field_name) if post_req is not None else None
         post = post if post is not None else ''
         token = get if get is not None else post
