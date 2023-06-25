@@ -20,7 +20,7 @@ class FormPolicy(AbstractPolicy):
         post = post if post is not None else ''
         token = get if get is not None else post
 
-        return compare_digest(token, original_value)
+        return compare_digest(token or "", original_value or "")
 
 
 class HeaderPolicy(AbstractPolicy):

@@ -7,7 +7,6 @@ try:
 except ImportError:  # pragma: no cover
     pass
 
-
 REQUEST_NEW_TOKEN_KEY = 'aiohttp_csrf_new_token'
 
 
@@ -116,3 +115,23 @@ class SessionStorage(BaseStorage):
         session = await get_session(request)
 
         session[self.session_name] = token
+
+
+class RedisSessionStorage(BaseStorage):
+    def __init__(self, redis_pool, session_name, *args, **kwargs):
+        self.redis_pool = redis_pool
+        self.session_name = session_name
+
+        super().__init__(*args, **kwargs)
+
+    def get_key(self, request):
+        return f"{self.session_name}_{request['token']}"
+
+    async def _get(self, request):
+        session = await get_session(request)
+        token = await self.redis_pool.get(self.get_key(request))
+        return token.decode() if token else None
+
+    async def _save_token(self, request, response, token):
+        session = await get_session(request)
+        await self.redis_pool.set(self.get_key(request), token)
